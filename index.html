@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito+Sans:opsz,wght@6..12,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Héritage Conseil Patrimoine</title>
+    <script src="./index.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="header-overlay">
+        <div>
+          <img class="logo-header" src="./images/logo.png" alt="forêt éclairée par le ciel" />
+        </div>
+        <div>
+          <div id="nav-trigger"></div>
+          <nav>
+            <div class="logo-floating-header-container">
+              <a href="/">
+                <img class="logo-floating-header" src="./images/logo.png" alt="forêt éclairée par le ciel"
+              /></a>
+            </div>
+            <ul>
+              <li><a href="#cabinet">Notre cabinet</a></li>
+              <li><a href="#accompagnement">Notre accompagnement</a></li>
+              <li><a href="#ambition">Notre ambition</a></li>
+              <li><a href="#certification">Nos certifications</a></li>
+              <li><a href="#contact">Nous contacter</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="presentation">
+        <div class="img-part"><img src="./images/chemin.jpg" alt="chemin dans la forêt" /></div>
+        <div class="text-part">
+          <h2 id="cabinet">Notre cabinet</h2>
+          <p>
+            Héritage Conseil Patrimoine a été conçu pour conseiller spécifiquement les dirigeants d’entreprises dans
+            l’optimisation et la transmission de leur patrimoine. Nous travaillons en totale indépendance et uniquement
+            sur recommandation afin d’apporter à nos client disponibilité et réactivité. Notre objectif principal est de
+            construire avec vous une relation de confiance afin de vous accompagner tout au long de votre vie.
+          </p>
+
+          <p class="italic">« Conseille ton client comme s’il était quelqu’un de ta famille »</p>
+        </div>
+      </section>
+
+      <section class="presentation">
+        <div class="text-part">
+          <h2 id="accompagnement">Notre accompagnement</h2>
+          <p class="">
+            Connaître votre situation et comprendre vos objectifs sont les bases pour vous apporter le bon conseil. Pour
+            cela, nous réalisons des bilans patrimoniaux permettant non seulement de vous faire un état de la situation
+            (diagnostic patrimonial et successoral) mais également d’établir une stratégie répondant à vos demandes.
+            Nous étudierons les aspects civils, fiscaux et financiers et vous délivrerons les préconisations les plus
+            adaptées à vos besoins.
+          </p>
+        </div>
+        <div class="img-part"><img src="./images/main.webp" alt="main tendue" /></div>
+      </section>
+
+      <section class="ambition">
+        <h2 id="ambition" class="">Notre ambition</h2>
+        <div class="card-container">
+          <div class="card-overlay">
+            <div class="card">
+              <div><img src="./images/couple.webp" alt="couple" /></div>
+              <p>Protéger votre famille</p>
+            </div>
+            <div class="card">
+              <div><img src="./images/itm.jpg" alt="supermarché" /></div>
+              <p>Transmettre/céder une entreprise</p>
+            </div>
+            <div class="card">
+              <div><img src="./images/enfants.jpg" alt="enfants" /></div>
+              <p>Anticiper la transmission</p>
+            </div>
+
+            <div class="card">
+              <div><img src="./images/plante.jpg" alt="main avec une plante" /></div>
+              <p>Fructifier et valoriser votre capital</p>
+            </div>
+            <div class="card">
+              <div><img src="./images/famille.jpg" alt="famille dans un champs" /></div>
+              <p>Protéger votre famille</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="certifications">
+        <h2 id="certification">Nos certifications</h2>
+        <div class="certifications-container">
+          <div><img src="./images/amf.png" alt="logo de l'AMF" /></div>
+          <div><img src="./images/orias.jpg" alt="logo de l'orias" /></div>
+          <div><img src="./images/Cncgp.png" alt="logo de CNCGP" /></div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact">
+      <div class="footer-overlay">
+        <form action="https://formspree.io/f/xleqgaaa" method="post" id="contact-form">
+          <label for="">Merci d'indiquer votre nom et prénom :</label>
+          <input type="text" name="name" />
+          <label for="">Votre message :</label>
+          <textarea name="message" id="" cols="61" rows="10"></textarea>
+          <label for="">Comment nous avez vous connu?</label>
+          <input type="text" name="discover" />
+          <button class="formButton">Nous contacter</button>
+          <p id="response-form"></p>
+        </form>
+      </div>
+    </footer>
+  </body>
+</html>
