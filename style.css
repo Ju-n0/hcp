@@ -7,16 +7,16 @@ html {
 }
 
 body {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
 }
 header {
-  background-image: url('./images/foret.webp');
+  background-image: url("./images/foret.webp");
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 60vh;
+  min-height: 100vh;
   margin-bottom: 3rem;
   position: sticky;
-  top: -31rem;
+  top: -55rem;
   z-index: 1;
 }
 
@@ -31,17 +31,18 @@ header.floating {
     rgba(255, 255, 255, 0.5) 62%,
     rgb(255, 255, 255)
   );
-  min-height: 60vh;
+  min-height: 100vh;
 }
 
 .header-overlay nav {
   font-size: 1.5rem;
-  font-family: 'DM Serif Display', serif;
+  font-family: "Cinzel", serif;
+  font-weight: 700;
   padding-right: 2rem;
-  height: 15rem;
+  height: 25rem;
   display: flex;
   justify-content: space-between;
-  gap: 5rem;
+  width: 100%;
 }
 
 .header-overlay ul {
@@ -49,8 +50,9 @@ header.floating {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  justify-content: flex-end;
-  gap: 2rem;
+  justify-content: space-between;
+  gap: 3rem;
+  padding-right: 15rem;
   padding-bottom: 4rem;
 }
 
@@ -59,10 +61,14 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: #275f2d;
+}
+
 .logo-header {
   display: block;
   margin-inline: auto;
-  width: 25rem;
+  width: 40rem;
   max-width: 100%;
   box-shadow: none;
 }
@@ -88,7 +94,8 @@ a {
 }
 
 h2 {
-  font-family: 'DM Serif Display', serif;
+  font-family: "Cinzel", serif;
+  font-weight: 700;
 }
 
 .italic {
@@ -154,34 +161,54 @@ section.visible {
 }
 
 .card-container {
-  background-image: url('./images/accord.jpg');
+  background-image: url("./images/accord.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   margin-top: 5rem;
   width: 100%;
   margin-inline: auto;
+  position: relative;
 }
 
 .card-overlay {
   background-color: hsla(0, 0%, 100%, 0.254);
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 4rem;
+  flex-direction: column;
 }
 
-.card {
-  align-self: center;
-  margin: 2rem;
+.card-width {
+  width: 80%;
+  margin-inline: auto;
 }
+.card-part-two,
+.card-part-three {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-part-one {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-part-two {
+  margin-top: 3.5rem;
+  justify-content: space-between;
+}
+.card-part-three {
+  margin-top: 5rem;
+  justify-content: space-evenly;
+  margin-bottom: 2rem;
+}
+
 .card img {
   aspect-ratio: 16/9;
   width: 100%;
   object-fit: cover;
   border-radius: 15px;
-  max-width: 25rem;
+  max-width: 30rem;
   transition: transform 0.3s ease-out;
 }
 
@@ -192,9 +219,9 @@ section.visible {
 
 .card p {
   font-size: 1.5rem;
-  font-family: 'DM Serif Display', serif;
-  text-align: center;
+  font-family: "DM Serif Display", serif;
   margin-top: 1.5rem;
+  text-align: center;
 }
 
 .certifications h2 {
@@ -221,7 +248,7 @@ section.visible {
 
 footer {
   height: 38rem;
-  background-image: url('./images/contact.jpg');
+  background-image: url("./images/contact.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -229,7 +256,12 @@ footer {
 
 .footer-overlay {
   height: 38rem;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.5) 75%, rgb(255, 255, 255));
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.5) 75%,
+    rgb(255, 255, 255)
+  );
 }
 
 form {
