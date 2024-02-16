@@ -115,6 +115,28 @@ section.visible {
   opacity: 1;
 }
 
+.bcg-img {
+  box-shadow: none;
+  position: absolute;
+  top: 162%;
+  right: 50%;
+  height: 13rem;
+}
+
+.bcg-img-left {
+  left: 1%;
+}
+
+.bcg-img-right {
+  right: 1%;
+}
+/* .two-sections {
+  background-image: url("./images/leave-bcg.png");
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center;
+} */
+
 .presentation {
   padding-block: 8rem;
   display: flex;
@@ -262,12 +284,16 @@ footer {
     rgba(255, 255, 255, 0.5) 75%,
     rgb(255, 255, 255)
   );
+  display: flex;
+  flex-direction: row;
 }
 
 form {
-  margin-top: 15rem;
+  color: #00000092;
+  font-weight: 500;
   gap: 1rem;
-  width: 40rem;
+  max-width: 40rem;
+  width: 100%;
   font-size: 1.25rem;
   display: flex;
   flex-direction: column;
@@ -278,11 +304,16 @@ form {
   background-color: #ffffffba;
   padding: 2rem;
   margin-left: 5rem;
+  margin-bottom: 3rem;
 }
 
 form input {
   font-size: 1.25rem;
-  width: 100%;
+  width: 90%;
+  border: solid 1px #0000007c;
+  border-top: none;
+  border-left: none;
+  border-right: none;
 }
 
 form button {
@@ -293,6 +324,32 @@ form button {
   margin-top: 1.5rem;
   margin-inline: auto;
   font-size: 1.25rem;
+}
+
+form button:hover {
+  cursor: pointer;
+}
+
+.form-first-part {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+}
+.form-names,
+.form-coordonates {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.sendEmail {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  padding-bottom: 5rem;
 }
 
 .error {
