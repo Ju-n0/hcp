@@ -118,7 +118,7 @@ section.visible {
 .bcg-img {
   box-shadow: none;
   position: absolute;
-  top: 162%;
+  top: 207%;
   right: 50%;
   height: 13rem;
 }
@@ -130,50 +130,61 @@ section.visible {
 .bcg-img-right {
   right: 1%;
 }
-/* .two-sections {
-  background-image: url("./images/leave-bcg.png");
-  background-repeat: no-repeat;
-  background-size: 80%;
-  background-position: center;
-} */
 
-.presentation {
-  padding-block: 8rem;
+.two-sections {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  margin-inline: auto;
   width: 80%;
   max-width: 100rem;
-  margin-inline: auto;
+}
+.presentation {
+  padding-block: 6rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .img-part {
-  width: 40%;
-  margin-block: auto;
+  width: 80%;
+  display: block;
+  margin-inline: auto;
 }
 
 .img-part img {
   border-radius: 5px;
-  max-width: 100%;
+  width: 100%;
 }
 
 .text-part {
-  padding-inline: 4rem;
-  width: 55%;
+  padding: 1rem;
+  display: block;
+  margin-inline: auto;
+  position: absolute;
+  background-color: #ffffff86;
+  border-radius: 0 0 5px 5px;
+  bottom: 8.5%;
+  left: 10%;
+  width: 80%;
   font-size: 1.5rem;
   line-height: 1.5;
 }
 
-.text-part h2 {
+.presentation h2 {
+  text-align: center;
   font-size: 2.5rem;
+  padding-bottom: 2rem;
 }
 
 .text-part p {
-  padding-top: 2rem;
   text-align: justify;
 }
 
 .text-part .italic {
+  margin-top: 1.5rem;
   text-align: right;
+  font-weight: 700;
 }
 
 .ambition h2 {
