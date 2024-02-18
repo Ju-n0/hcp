@@ -16,7 +16,7 @@ header {
   min-height: 100vh;
   margin-bottom: 3rem;
   position: sticky;
-  top: -55rem;
+  top: -56rem;
   z-index: 1;
 }
 
@@ -32,6 +32,9 @@ header.floating {
     rgb(255, 255, 255)
   );
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .header-overlay nav {
@@ -39,10 +42,12 @@ header.floating {
   font-family: "Cinzel", serif;
   font-weight: 700;
   padding-right: 2rem;
-  height: 25rem;
+  height: 10rem;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   width: 100%;
+  padding-bottom: 0.5rem;
 }
 
 .header-overlay ul {
@@ -53,7 +58,7 @@ header.floating {
   justify-content: space-between;
   gap: 3rem;
   padding-right: 15rem;
-  padding-bottom: 4rem;
+  padding-bottom: 1.5rem;
 }
 
 a {
@@ -71,13 +76,15 @@ a:hover {
   width: 40rem;
   max-width: 100%;
   box-shadow: none;
+  margin-bottom: 4rem;
 }
 
 .logo-floating-header-container {
   display: flex;
   align-items: flex-end;
   width: 6rem;
-  margin: 2rem;
+  padding-top: rem;
+  margin-inline: 2rem;
   opacity: 0;
   transition: all 250ms ease-in;
 }
@@ -91,6 +98,8 @@ a:hover {
   width: 6rem;
   max-width: 100%;
   box-shadow: none;
+  align-self: flex-end;
+  margin-top: 5rem;
 }
 
 h2 {
@@ -130,12 +139,6 @@ section.visible {
 .bcg-img-right {
   right: 1%;
 }
-/* .two-sections {
-  background-image: url("./images/leave-bcg.png");
-  background-repeat: no-repeat;
-  background-size: 80%;
-  background-position: center;
-} */
 
 .presentation {
   padding-block: 8rem;
@@ -176,7 +179,7 @@ section.visible {
   text-align: right;
 }
 
-.ambition h2 {
+.objectifs h2 {
   margin-top: 5rem;
   font-size: 2.5rem;
   text-align: center;
@@ -187,7 +190,7 @@ section.visible {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  margin-top: 5rem;
+  margin-top: 4rem;
   width: 100%;
   margin-inline: auto;
   position: relative;
@@ -210,19 +213,19 @@ section.visible {
 }
 
 .card-part-one {
-  margin-top: 2rem;
+  margin-top: 1.75rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .card-part-two {
-  margin-top: 3.5rem;
+  margin-top: 3rem;
   justify-content: space-between;
 }
 .card-part-three {
-  margin-top: 5rem;
+  margin-top: 3rem;
   justify-content: space-evenly;
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
 }
 
 .card img {
@@ -242,8 +245,9 @@ section.visible {
 .card p {
   font-size: 1.5rem;
   font-family: "DM Serif Display", serif;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
   text-align: center;
+  text-shadow: 1px 0px 1px #0000007b;
 }
 
 .certifications h2 {
@@ -253,11 +257,19 @@ section.visible {
   margin-bottom: 4rem;
 }
 .certifications-container {
+  padding: 2rem;
+  padding-bottom: 3rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 6rem;
-  margin-bottom: 8rem;
+  /* margin-bottom: 8rem; */
+  width: 60%;
+  margin-inline: auto;
+  /* box-shadow: 0 1.5px 0px 0px rgb(20, 76, 50), 0 4px 0px 0px white,
+    0 6px 0px 0px rgba(20, 76, 50, 0.641); */
+  /* border-radius: 5px;  */
+  /* border-bottom: double #303130 2px; */
 }
 
 .certifications-container img {
@@ -266,6 +278,14 @@ section.visible {
   object-fit: cover;
   max-width: 15rem;
   box-shadow: none;
+}
+
+.certification-separator {
+  box-shadow: none;
+  display: block;
+  margin-inline: auto;
+  width: 20rem;
+  margin-bottom: 10rem;
 }
 
 footer {
@@ -285,7 +305,7 @@ footer {
     rgb(255, 255, 255)
   );
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 form {
@@ -344,12 +364,12 @@ form button:hover {
 }
 
 .sendEmail {
+  color: #000000c9;
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  padding-bottom: 5rem;
+  margin-left: 8rem;
+  font-size: 1.25rem;
+  padding-bottom: 2.5rem;
 }
 
 .error {
