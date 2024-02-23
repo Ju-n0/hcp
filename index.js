@@ -1,60 +1,60 @@
-const sectionElements = document.querySelectorAll('section');
+if (matchMedia("(min-width: 992px)").matches) {
+  const sectionElements = document.querySelectorAll("section");
 
-const sectionObserver = new IntersectionObserver(
-  (entries) => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) {
-        entry.target.closest('section').classList.add('visible');
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.closest("section").classList.add("visible");
+        }
       }
+    },
+    {
+      rootMargin: "-300px 0px",
     }
-  },
-  {
-    rootMargin: '-300px 0px',
-  },
+  );
+
+  sectionElements.forEach((el) => sectionObserver.observe(el));
+}
+
+const logoFloatingHeaderContainerElement = document.querySelector(
+  ".logo-floating-header-container"
 );
 
-sectionElements.forEach((el) => sectionObserver.observe(el));
+document.addEventListener("scroll", (e) => {
+  if (matchMedia("(max-width: 992px)").matches) return;
 
-const navTriggerElement = document.getElementById('nav-trigger');
-const headerElement = document.querySelector('header');
-const logoFloatingHeaderContainerElement = document.querySelector('.logo-floating-header-container');
+  const mainElement = document.querySelector("main");
 
-const navTriggerObserver = new IntersectionObserver((entries) => {
-  const entry = entries[0];
-  console.log(entry.isIntersecting);
-  if (!entry.isIntersecting) {
-    headerElement.classList.add('floating');
-    logoFloatingHeaderContainerElement.classList.add('visible');
+  if (mainElement.getBoundingClientRect().top <= 120) {
+    logoFloatingHeaderContainerElement.classList.add("visible");
   } else {
-    headerElement.classList.remove('floating');
-    logoFloatingHeaderContainerElement.classList.remove('visible');
+    logoFloatingHeaderContainerElement.classList.remove("visible");
   }
 });
 
-navTriggerObserver.observe(navTriggerElement);
-
-const form = document.getElementById('contact-form');
+const form = document.getElementById("contact-form");
 
 async function handleSubmit(event) {
   event.preventDefault();
-  const status = document.getElementById('response-form');
-  const formButton = document.querySelector('.formButton');
+  const status = document.getElementById("response-form");
+  const formButton = document.querySelector(".formButton");
   const oldText = formButton.textContent;
-  formButton.textContent = 'Envoi...';
+  formButton.textContent = "Envoi...";
 
   const data = new FormData(event.target);
   fetch(event.target.action, {
     method: form.method,
     body: data,
     headers: {
-      Accept: 'application/json',
+      Accept: "application/json",
     },
   })
     .then((response) => {
-      formButton.textContent = 'Envoi...';
+      formButton.textContent = "Envoi...";
       if (response.ok) {
-        status.textContent = 'Votre email a été envoyé';
-        status.classList.remove('error');
+        status.textContent = "Votre email a été envoyé";
+        status.classList.remove("error");
         form.reset();
       } else {
         return response.json();
@@ -64,20 +64,42 @@ async function handleSubmit(event) {
       if (!data) {
         return;
       }
-      if (Object.hasOwn(data, 'errors')) {
-        status.textContent = data.errors.map((error) => error.message).join(', ');
-        status.classList.add('error');
+      if (Object.hasOwn(data, "errors")) {
+        status.textContent = data.errors.map((error) => error.message).join(", ");
+        status.classList.add("error");
       } else {
-        status.textContent = 'Une erreur est survenue. Merci de réessayer plus tard.';
-        status.classList.add('error');
+        status.textContent = "Une erreur est survenue. Merci de réessayer plus tard.";
+        status.classList.add("error");
       }
     })
     .catch((error) => {
-      status.textContent = 'Une erreur est survenue. Merci de réessayer plus tard.';
-      status.classList.add('error');
+      status.textContent = "Une erreur est survenue. Merci de réessayer plus tard.";
+      status.classList.add("error");
     })
     .finally(() => {
       formButton.textContent = oldText;
     });
 }
-form.addEventListener('submit', handleSubmit);
+form.addEventListener("submit", handleSubmit);
+
+const burgerElement = document.querySelector(".burger");
+
+burgerElement.addEventListener("click", () => {
+  burgerElement.classList.toggle("open");
+
+  if (burgerElement.classList.contains("open")) {
+    document.body.style.overflow = "hidden";
+    return;
+  }
+
+  document.body.style.overflow = "";
+});
+
+const navItemElements = document.querySelectorAll(".nav-item");
+
+navItemElements.forEach((el) => {
+  el.addEventListener("click", () => {
+    burgerElement.classList.remove("open");
+    document.body.style.overflow = "";
+  });
+});

@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./reset.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,35 +10,42 @@
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Héritage Conseil Patrimoine</title>
     <script src="./index.js" defer></script>
   </head>
   <body>
     <header>
       <div class="header-overlay">
+        <div class="burger">
+          <div class="burger-line"></div>
+          <div class="burger-line"></div>
+          <div class="burger-line"></div>
+        </div>
         <div>
           <img class="logo-header" src="./images/logo.png" alt="forêt éclairée par le ciel" />
         </div>
-        <div>
-          <div id="nav-trigger"></div>
-          <nav>
-            <div class="logo-floating-header-container">
-              <a href="/">
-                <img
-                  class="logo-floating-header"
-                  src="./images/logo.png"
-                  alt="forêt éclairée par le ciel"
-              /></a>
-            </div>
-            <ul>
-              <li><a href="#cabinet">Notre cabinet</a></li>
-              <li><a href="#accompagnement">Notre accompagnement</a></li>
-              <li><a href="#objectifs">Vos objectifs</a></li>
-              <li><a href="#certification">Nos certifications</a></li>
-              <li><a href="#contact">Nous contacter</a></li>
-            </ul>
-          </nav>
+        <div id="header-bottom">
+          <div class="header-bottom-overlay">
+            <nav>
+              <div class="logo-floating-header-container">
+                <a href="/">
+                  <img
+                    class="logo-floating-header"
+                    src="./images/logo.png"
+                    alt="forêt éclairée par le ciel"
+                /></a>
+              </div>
+              <ul>
+                <li class="nav-item"><a href="#cabinet">Notre cabinet</a></li>
+                <li class="nav-item"><a href="#accompagnement">Notre accompagnement</a></li>
+                <li class="nav-item"><a href="#objectifs">Vos objectifs</a></li>
+                <li class="nav-item"><a href="#certification">Nos certifications</a></li>
+                <li class="nav-item"><a href="#contact">Nous contacter</a></li>
+              </ul>
+              <div class="logo-floating-header-container"></div>
+            </nav>
+          </div>
         </div>
       </div>
     </header>
@@ -60,10 +66,9 @@
 
             <p class="italic">« Conseille ton client comme s’il était quelqu’un de ta famille »</p>
           </div>
+          <img class="bcg-img bcg-img-left" src="./images/leave-left.png" alt="" />
+          <img class="bcg-img bcg-img-right" src="./images/leave-right.png" alt="" />
         </section>
-
-        <img class="bcg-img bcg-img-left" src="./images/leave-left.png" alt="" />
-        <img class="bcg-img bcg-img-right" src="./images/leave-right.png" alt="" />
 
         <section class="presentation">
           <div class="text-part">
@@ -147,7 +152,7 @@
             </div>
           </div>
           <label for="">Message :</label>
-          <textarea name="message" id="" cols="61" rows="10"></textarea>
+          <textarea name="message" id=""></textarea>
           <button class="formButton">Nous contacter</button>
           <p id="response-form"></p>
         </form>
