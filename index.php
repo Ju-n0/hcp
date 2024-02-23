@@ -140,7 +140,7 @@
             >contact@heritage-conseil-patrimoine.fr</a
           >
         </div>
-        <form action="https://formspree.io/f/xleqgaaa" method="post" id="contact-form">
+        <form action="/contact.php" method="post" id="contact-form">
           <div class="form-first-part">
             <div class="form-names">
               <input type="text" name="firstName" placeholder="Prénom" />
