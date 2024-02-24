@@ -1,0 +1,16 @@
+{
+  "name": "hcp",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"sass --watch scss/style.scss:css/style.css\" \"php -S localhost:5500\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "sass": "^1.71.1"
+  }
+}

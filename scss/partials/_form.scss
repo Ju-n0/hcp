@@ -2,7 +2,7 @@ form {
   color: #00000092;
   font-weight: 500;
   gap: 1rem;
-  max-width: 40rem;
+  max-width: 45rem;
   width: 90%;
   font-size: 1.25rem;
   display: flex;
@@ -12,7 +12,7 @@ form {
   border-radius: 5px;
   border: #000000 1px solid;
   background-color: #ffffffba;
-  padding: 2rem;
+  padding: 2rem 1rem;
 
   margin-bottom: 3rem;
 
@@ -33,12 +33,10 @@ form {
     min-height: 9rem;
     max-height: 14rem;
     width: 100%;
-    resize: vertical;
+    resize: none;
   }
 
   button {
-    border-radius: 5px;
-    padding: 1rem;
     color: white;
     background-color: #275f2d;
     margin-top: 1.5rem;
@@ -51,22 +49,46 @@ form {
   }
 }
 
-.form-first-part {
+.form-first-part,
+.form-second-part {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 95%;
   gap: 1rem;
+  margin: auto;
 }
+
 .form-names,
 .form-coordonates {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
 
   @include min-768 {
     flex-direction: row;
+  }
+}
+
+.field-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .error-message {
+    display: none;
+    font-size: 1rem;
+    padding: 0.5rem 0.25rem;
+    border: 1px solid var(--error-border-color);
+    border-radius: 0.25rem;
+    color: var(--error-color);
+    background-color: var(--error-background-color);
+
+    &:not(.hidden) {
+      display: block;
+    }
   }
 }
 
@@ -84,8 +106,16 @@ form {
     justify-content: flex-start;
     flex-direction: row;
   }
+
+  a {
+    padding: 0.25rem;
+  }
 }
 
 #response-form {
-  display: none;
+  margin: auto;
+
+  &.hidden {
+    display: none;
+  }
 }

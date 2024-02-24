@@ -137,7 +137,7 @@ form {
   color: rgba(0, 0, 0, 0.5725490196);
   font-weight: 500;
   gap: 1rem;
-  max-width: 40rem;
+  max-width: 45rem;
   width: 90%;
   font-size: 1.25rem;
   display: flex;
@@ -147,7 +147,7 @@ form {
   border-radius: 5px;
   border: #000000 1px solid;
   background-color: rgba(255, 255, 255, 0.7294117647);
-  padding: 2rem;
+  padding: 2rem 1rem;
   margin-bottom: 3rem;
 }
 @media (min-width: 992px) {
@@ -167,11 +167,9 @@ form textarea {
   min-height: 9rem;
   max-height: 14rem;
   width: 100%;
-  resize: vertical;
+  resize: none;
 }
 form button {
-  border-radius: 5px;
-  padding: 1rem;
   color: white;
   background-color: #275f2d;
   margin-top: 1.5rem;
@@ -182,11 +180,13 @@ form button:hover {
   cursor: pointer;
 }
 
-.form-first-part {
+.form-first-part,
+.form-second-part {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 95%;
   gap: 1rem;
+  margin: auto;
 }
 
 .form-names,
@@ -194,7 +194,7 @@ form button:hover {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
 }
 @media (min-width: 768px) {
@@ -202,6 +202,25 @@ form button:hover {
   .form-coordonates {
     flex-direction: row;
   }
+}
+
+.field-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.field-container .error-message {
+  display: none;
+  font-size: 1rem;
+  padding: 0.5rem 0.25rem;
+  border: 1px solid var(--error-border-color);
+  border-radius: 0.25rem;
+  color: var(--error-color);
+  background-color: var(--error-background-color);
+}
+.field-container .error-message:not(.hidden) {
+  display: block;
 }
 
 .sendEmail {
@@ -220,8 +239,14 @@ form button:hover {
     flex-direction: row;
   }
 }
+.sendEmail a {
+  padding: 0.25rem;
+}
 
 #response-form {
+  margin: auto;
+}
+#response-form.hidden {
   display: none;
 }
 
@@ -296,9 +321,20 @@ form button:hover {
 * {
   box-sizing: border-box;
 }
+*:focus-visible {
+  outline: 1px solid var(--main-color-light-opacity);
+}
+
+:where(*):focus-visible {
+  border-radius: 5px;
+}
 
 :root {
-  --main-color: #275f2d;
+  --main-color: hsl(126, 42%, 26%);
+  --main-color-light-opacity: hsla(126, 42%, 26%, 0.5);
+  --error-color: hsl(0, 50%, 45%);
+  --error-background-color: hsl(0, 100%, 92%);
+  --error-border-color: hsla(0, 50%, 45%, 0.25);
 }
 
 html {
@@ -336,6 +372,38 @@ header.floating {
   box-shadow: rgba(93, 93, 93, 0.5) 0px 0px 10px;
 }
 
+button {
+  border: none;
+  border-radius: 5px;
+  padding: 1rem;
+}
+button:focus-within {
+  outline: 1px solid hsla(255, 100%, 100%, 0.5);
+  border-radius: 5px;
+}
+
+:where(input, textarea, button) {
+  padding: 0.5rem;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+:where(input, textarea, button):focus-within {
+  outline: 1px solid var(--main-color-light-opacity);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+:where(textarea) {
+  border-radius: 5px;
+}
+:where(textarea):focus-within {
+  border-radius: 5px;
+}
+
 .header-overlay {
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.5) 62%, rgb(255, 255, 255));
   min-height: 100vh;
@@ -368,8 +436,12 @@ header.floating {
   gap: 3rem;
   padding-bottom: 1.5rem;
 }
-.header-overlay li {
+.header-overlay .nav-item {
   text-align: center;
+  padding: 0.25rem;
+}
+.header-overlay a {
+  display: block;
 }
 
 @media (min-width: 992px) {

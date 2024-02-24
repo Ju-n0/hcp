@@ -8,7 +8,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 $method = strtolower($_SERVER['REQUEST_METHOD']);
 
 if ($method !== 'post') {
-    die("Method not allowed");
+    header('Location: /');
+    die;
 }
 
 function getFormData($key)
@@ -19,7 +20,7 @@ function getFormData($key)
 function assertLettersOnly($key, $value, &$errors, $message)
 {
     $notALetterRegex = '/[_!:§\/.;?,*µù%$£¨&"\'\(\[{#~|`\\^@à\]\)}=\d]+/';
-    $matches = [];
+    $matches         = [];
 
     preg_match($notALetterRegex, $value, $matches);
 
@@ -30,7 +31,7 @@ function assertLettersOnly($key, $value, &$errors, $message)
 
 function assertPhoneNumer($key, $value, &$errors, $message)
 {
-    $regex = '/^\+?\d+$/';
+    $regex   = '/^\+?\d+$/';
     $matches = [];
 
     preg_match($regex, $value, $matches);
@@ -47,11 +48,52 @@ function assertEmail($key, $value, &$errors, $message)
     }
 }
 
-$firstName = getFormData('firstName');
-$lastName = getFormData('lastName');
+function formatMessage(
+    $firstName,
+    $lastName,
+    $phoneNumber,
+    $email,
+    $message,
+    $isHtml = true
+) {
+    if ($isHtml) {
+        $html = "<p><strong>Prénom:</strong> {$firstName}</p>
+                <p><strong>Nom:</strong> {$lastName}</p>
+                <p><strong>Téléphone portable:</strong> {$phoneNumber}</p>";
+
+        if (empty($email)) {
+            $html .= "<p><strong>Email:</strong> non renseigné</p>";
+        } else {
+            $html .= "<p><strong>Email:</strong> {$email}</p>";
+        }
+
+        $html .= "<p><strong>Message:</strong></p>
+                <p>{$message}</p>";
+
+        return $html;
+    }
+
+    $text = "Prénom: {$firstName}\n
+            Nom: {$lastName}\n
+            Téléphone portable: {$phoneNumber}\n";
+
+    if (empty($email)) {
+        $text .= "Email: non renseigné\n";
+    } else {
+        $text .= "Email: {$email}\n";
+    }
+
+    $text .= "Message:\n{$message}";
+
+    return $text;
+
+}
+
+$firstName   = getFormData('firstName');
+$lastName    = getFormData('lastName');
 $phoneNumber = getFormData('phoneNumber');
-$email = getFormData('email');
-$message = getFormData('message');
+$email       = getFormData('email');
+$message     = getFormData('message');
 
 $errors = [];
 
@@ -63,27 +105,37 @@ foreach ($mandatoryFields as $field) {
     }
 }
 
-$firstName = trim($firstName);
-$lastName = trim($lastName);
+$firstName   = trim($firstName);
+$lastName    = trim($lastName);
 $phoneNumber = trim($phoneNumber);
-$message = trim($message);
+$message     = trim($message);
+
+if (!empty($firstName)) {
+    assertLettersOnly("firstName", $firstName, $errors, "Le prénom ne doit contenir que des lettres.");
+}
+
+if (!empty($lastName)) {
+    assertLettersOnly("lastName", $lastName, $errors, "Le nom ne doit contenir que des lettres.");
+}
+
+if (!empty($phoneNumber)) {
+    assertPhoneNumer('phoneNumber', $phoneNumber, $errors, "Ce numéro de portable n'est pas valide.");
+}
 
 if (!empty($email)) {
     $email = trim($email);
+    assertEmail('email', $email, $errors, "L'email n'est pas valide.");
 }
-
-assertLettersOnly("firstName", $firstName, $errors, "Le prénom ne doit contenir que des lettres.");
-assertLettersOnly("lastName", $lastName, $errors, "Le nom ne doit contenir que des lettres.");
-assertPhoneNumer('phoneNumber', $phoneNumber, $errors, "Ce numéro de téléphone n'est pas valide.");
-assertEmail('email', $email, $errors, "L'email n'est pas valide.");
 
 $response = [];
 
+header('Content-Type: application/json');
+
 if (empty($errors)) {
-    $firstName = htmlentities($firstName);
-    $lastName = htmlentities($lastName);
+    $firstName   = htmlentities($firstName);
+    $lastName    = htmlentities($lastName);
     $phoneNumber = htmlentities($phoneNumber);
-    $message = htmlentities($message);
+    $message     = htmlentities($message);
 
     try {
         // envoi du mail
@@ -101,10 +153,10 @@ if (empty($errors)) {
         $mail->Port       = $config['mail']['port'];
 
         $data = [
-            'firstName' => $firstName,
-            'lastName' => $lastName,
+            'firstName'   => $firstName,
+            'lastName'    => $lastName,
             'phoneNumber' => $phoneNumber,
-            'message' => $message
+            'message'     => $message
         ];
 
         if (!empty($email)) {
@@ -112,29 +164,37 @@ if (empty($errors)) {
         }
 
         //Recipients
-        $mail->setFrom($_POST['email'], "{$data['firstName']} {$data['lastName']}");
-        $mail->addAddress($config['mail']['fake']['address'], $config['mail']['fake']['name']); //Add a recipient
+        if ($email) {
+            $mail->setFrom($email, "{$data['firstName']} {$data['lastName']}");
+        } else {
+            $mail->setFrom("noreply@heritage-conseil-patrimoine.fr", "Email inconnu");
+        }
+        //Add a recipient
+        $mail->addAddress($config['mail']['fake']['address'], $config['mail']['fake']['name']);
 
         //Content
         $mail->isHTML(true); //Set email format to HTML
         $mail->Subject = "Nouvel demande de contact";
-        $mail->Body = $_POST['message'];
-        $mail->AltBody = $_POST['message'];
+        $mail->Body    = formatMessage($firstName, $lastName, $phoneNumber, $email, $message);
+        $mail->AltBody = formatMessage($firstName, $lastName, $phoneNumber, $email, $message, false);
 
         $success = $mail->send();
 
+        if (!$success) {
+            throw new Exception();
+        }
+
         //envoi réponse
         $response = [
-            'status' => 'success',
+            'status'  => 'success',
             'message' => 'Votre message a bien été envoyé.',
         ];
 
         echo json_encode($response);
     } catch (Exception $e) {
-        echo $e->getMessage();
         $response = [
-            'status' => 'error',
-            'message' => 'Une erreur est survenue. Veuillez reessayer.',
+            'status'  => 'error',
+            'message' => "Une erreur est survenue lors de l'envoi de votre message. Veuillez reessayer plus tard.",
         ];
 
         echo json_encode($response);
@@ -146,5 +206,6 @@ if (empty($errors)) {
         'errors' => $errors,
     ];
 
+    http_response_code(400);
     echo json_encode($response);
 }

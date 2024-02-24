@@ -5,10 +5,24 @@
 
 * {
   box-sizing: border-box;
+
+  &:focus-visible {
+    outline: 1px solid var(--main-color-light-opacity);
+  }
+}
+
+:where(*) {
+  &:focus-visible {
+    border-radius: 5px;
+  }
 }
 
 :root {
-  --main-color: #275f2d;
+  --main-color: hsl(126, 42%, 26%);
+  --main-color-light-opacity: hsla(126, 42%, 26%, 0.5);
+  --error-color: hsl(0, 50%, 45%);
+  --error-background-color: hsl(0, 100%, 92%);
+  --error-border-color: hsla(0, 50%, 45%, 0.25);
 }
 
 html {
@@ -28,6 +42,7 @@ html {
 body {
   font-family: "Nunito Sans", sans-serif;
 }
+
 header {
   background-image: url("../images/foret.webp");
   background-repeat: no-repeat;
@@ -42,6 +57,41 @@ header {
 
   &.floating {
     box-shadow: rgba(93, 93, 93, 0.5) 0px 0px 10px;
+  }
+}
+
+button {
+  border: none;
+  border-radius: 5px;
+  padding: 1rem;
+
+  &:focus-within {
+    outline: 1px solid hsla(255, 100%, 100%, 0.5);
+    border-radius: 5px;
+  }
+}
+
+:where(input, textarea, button) {
+  padding: 0.5rem;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+
+  &:focus-within {
+    outline: 1px solid var(--main-color-light-opacity);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+:where(textarea) {
+  border-radius: 5px;
+
+  &:focus-within {
+    border-radius: 5px;
   }
 }
 
@@ -83,8 +133,13 @@ header {
     padding-bottom: 1.5rem;
   }
 
-  li {
+  .nav-item {
     text-align: center;
+    padding: 0.25rem;
+  }
+
+  a {
+    display: block;
   }
 }
 
