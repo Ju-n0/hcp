@@ -129,7 +129,6 @@
     <section class="certifications">
       <h2 id="certification">Nos certifications</h2>
       <div class="certifications-container">
-        <div><img src="./images/amf.png" alt="logo de l'AMF" /></div>
         <div><img src="./images/orias.jpg" alt="logo de l'orias" /></div>
         <div><img src="./images/Cncgp.png" alt="logo de CNCGP" /></div>
       </div>
@@ -139,10 +138,13 @@
 
   <footer id="contact">
     <div class="footer-overlay">
+       <h2 class="footer-title">Formulaire de contact</h2>
       <div class="sendEmail">
         <p>Pour nous contacter:&nbsp;</p>
         <a href="mailto:contact@heritage-conseil-patrimoine.fr">contact@heritage-conseil-patrimoine.fr</a>
+      
       </div>
+      
       <form action="/contact.php" method="post" id="contact-form">
         <div class="form-first-part">
           <div class="form-names">

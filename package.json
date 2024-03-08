@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"sass --watch scss/style.scss:css/style.css\" \"php -S localhost:5500\""
+    "dev": "concurrently \"sass --watch scss/style.scss:css/style.css\" \"php -S 0.0.0.0:5500\""
   },
   "keywords": [],
   "author": "",
