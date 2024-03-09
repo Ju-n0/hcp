@@ -167,14 +167,14 @@ if (empty($errors)) {
         if ($email) {
             $mail->setFrom($email, "{$data['firstName']} {$data['lastName']}");
         } else {
-            $mail->setFrom("noreply@heritage-conseil-patrimoine.fr", "Email inconnu");
+            $mail->setFrom("no-reply@heritage-conseil-patrimoine.fr", "Email inconnu");
         }
         //Add a recipient
-        $mail->addAddress($config['mail']['fake']['address'], $config['mail']['fake']['name']);
+        $mail->addAddress($config['mail']['recipient_address'], $config['mail']['recipient_name']);
 
         //Content
         $mail->isHTML(true); //Set email format to HTML
-        $mail->Subject = "Nouvel demande de contact";
+        $mail->Subject = "Nouvelle demande de contact";
         $mail->Body    = formatMessage($firstName, $lastName, $phoneNumber, $email, $message);
         $mail->AltBody = formatMessage($firstName, $lastName, $phoneNumber, $email, $message, false);
 
