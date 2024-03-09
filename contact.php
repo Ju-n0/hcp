@@ -141,16 +141,7 @@ if (empty($errors)) {
         // envoi du mail
         $mail = new PHPMailer(true);
         //Server settings
-        // $mail->isSendmail();
-
-        // this is temporary and will be replaced by sendmail
-        $mail->isSMTP();
-        $mail->Host       = $config['mail']['host'];
-        $mail->SMTPAuth   = true;
-        $mail->Username   = $config['mail']['username'];
-        $mail->Password   = $config['mail']['password'];
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Port       = $config['mail']['port'];
+        $mail->isSendmail();
 
         $data = [
             'firstName'   => $firstName,
@@ -167,7 +158,7 @@ if (empty($errors)) {
         if ($email) {
             $mail->setFrom($email, "{$data['firstName']} {$data['lastName']}");
         } else {
-            $mail->setFrom("no-reply@heritage-conseil-patrimoine.fr", "Email inconnu");
+            $mail->setFrom("no-reply@heritage-conseil-patrimoine.fr", "{$data['firstName']} {$data['lastName']}");
         }
         //Add a recipient
         $mail->addAddress($config['mail']['recipient_address'], $config['mail']['recipient_name']);
