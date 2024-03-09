@@ -64,7 +64,7 @@
             Héritage Conseil Patrimoine a été conçu pour conseiller spécifiquement les dirigeants
             d’entreprises dans l’optimisation et la transmission de leur patrimoine. Nous
             travaillons en totale indépendance et uniquement sur recommandation afin d’apporter à
-            nos client disponibilité et réactivité. Notre objectif principal est de construire
+            nos clients disponibilité et réactivité. Notre objectif principal est de construire
             avec vous une relation de confiance afin de vous accompagner tout au long de votre
             vie.
           </p>
