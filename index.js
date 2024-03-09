@@ -1,3 +1,10 @@
+const logoFloatingHeaderContainerElement = document.querySelector(
+  ".logo-floating-header-container"
+);
+const form = document.getElementById("contact-form");
+const burgerElement = document.querySelector(".burger");
+const navItemElements = document.querySelectorAll(".nav-item");
+
 if (matchMedia("(min-width: 992px)").matches) {
   const sectionElements = document.querySelectorAll("section");
 
@@ -17,9 +24,31 @@ if (matchMedia("(min-width: 992px)").matches) {
   sectionElements.forEach((el) => sectionObserver.observe(el));
 }
 
-const logoFloatingHeaderContainerElement = document.querySelector(
-  ".logo-floating-header-container"
-);
+matchMedia("(min-width: 992px)").addEventListener("change", (e) => {
+  const sectionElements = document.querySelectorAll("section");
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.closest("section").classList.add("visible");
+        }
+      }
+    },
+    {
+      rootMargin: "-300px 0px",
+    }
+  );
+
+  if (e.matches) {
+    sectionElements.forEach((el) => sectionObserver.observe(el));
+    return;
+  }
+
+  sectionElements.forEach((el) => {
+    logoFloatingHeaderContainerElement.classList.remove("visible");
+    sectionObserver.unobserve(el);
+  });
+});
 
 document.addEventListener("scroll", (e) => {
   if (matchMedia("(max-width: 992px)").matches) return;
@@ -32,8 +61,6 @@ document.addEventListener("scroll", (e) => {
     logoFloatingHeaderContainerElement.classList.remove("visible");
   }
 });
-
-const form = document.getElementById("contact-form");
 
 async function handleSubmit(event) {
   event.preventDefault();
@@ -97,8 +124,6 @@ async function handleSubmit(event) {
 }
 form.addEventListener("submit", handleSubmit);
 
-const burgerElement = document.querySelector(".burger");
-
 burgerElement.addEventListener("click", () => {
   burgerElement.classList.toggle("open");
 
@@ -109,8 +134,6 @@ burgerElement.addEventListener("click", () => {
 
   document.body.style.overflow = "";
 });
-
-const navItemElements = document.querySelectorAll(".nav-item");
 
 navItemElements.forEach((el) => {
   el.addEventListener("click", () => {
