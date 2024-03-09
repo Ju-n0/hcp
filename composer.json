@@ -1,0 +1,13 @@
+{
+  "name": "juliettenogueira/hcp",
+  "type": "project",
+  "require": {
+    "phpmailer/phpmailer": "^6.9"
+  },
+  "authors": [
+    {
+      "name": "Ju-n0",
+      "email": "juliettenogueira.pro@gmail.com"
+    }
+  ]
+}
